@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const Table = ({ users }) => {
+  const deleteUser = (email) => {
+    console.log(email);
+  };
   const listRenderer = users.map((user) => (
     <tr key={user.email}>
       <td>{user.email}</td>
@@ -10,9 +14,8 @@ const Table = ({ users }) => {
         <Link to={`/detail/${user.email}`}>
           <i className="edit outline icon cursor-pointer"></i>
         </Link>
-
         <i
-          // (click)="deleteUser(user.email)"
+          onClick={() => deleteUser(user.email)}
           className="trash alternate outline icon cursor-pointer"
         ></i>
       </td>

@@ -2,12 +2,18 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const Form = ({ submitData, updateData, create = false, edit = false }) => {
+const Form = ({
+  submitData,
+  updateData,
+  create = false,
+  edit = false,
+  userData = {},
+}) => {
   const formik = useFormik({
     initialValues: {
-      userName: "",
-      email: "",
-      password: "",
+      userName: userData.userName || "",
+      email: userData.email || "",
+      password: userData.password || "",
     },
     validationSchema: Yup.object({
       userName: Yup.string()
@@ -42,7 +48,7 @@ const Form = ({ submitData, updateData, create = false, edit = false }) => {
               <div>{formik.errors.userName}</div>
             ) : null}
           </div>
-          <div className="field">
+          <div className={edit ? "field disabled" : "field"}>
             <label htmlFor="email">Email Address</label>
             <input
               id="email"
@@ -62,7 +68,7 @@ const Form = ({ submitData, updateData, create = false, edit = false }) => {
           <input
             id="password"
             name="password"
-            type="text"
+            type="password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
@@ -74,7 +80,7 @@ const Form = ({ submitData, updateData, create = false, edit = false }) => {
       </div>
       <div style={{ margin: 20 }}></div>
       <button className="ui submit button" type="submit">
-        Submit
+        {create ? "Submit" : "Update"}
       </button>
     </form>
   );

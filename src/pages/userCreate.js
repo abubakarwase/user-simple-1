@@ -1,8 +1,8 @@
 import React from "react";
-import userAPI from "../api/userAPI";
-import Form from "../components/form";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import userAPI from "../api/userAPI";
+import Form from "../components/form";
 
 const UserCreate = () => {
   const navigate = useNavigate();
